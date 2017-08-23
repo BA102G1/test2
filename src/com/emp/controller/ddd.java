@@ -20,7 +20,7 @@ public class ddd extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		aa;a;
+		int oooo=654648;
 	}
 
 }
