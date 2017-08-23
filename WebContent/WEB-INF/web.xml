@@ -55,6 +55,13 @@
 		<servlet-name>ggggg</servlet-name>
 		<servlet-class>com.dept.controller.ggggg</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>uuuuuuu</display-name>
+		<servlet-name>uuuuuuu</servlet-name>
+		<servlet-class>com.dept.controller.uuuuuuu</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>DeptServlet</servlet-name>
 		<url-pattern>/dept/dept.do</url-pattern>
@@ -70,6 +77,10 @@
 	<servlet-mapping>
 		<servlet-name>ggggg</servlet-name>
 		<url-pattern>/ggggg</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>uuuuuuu</servlet-name>
+		<url-pattern>/uuuuuuu</url-pattern>
 	</servlet-mapping>
 
 </web-app>
