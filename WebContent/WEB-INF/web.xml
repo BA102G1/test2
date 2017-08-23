@@ -34,9 +34,20 @@
 		<servlet-name>DeptServlet</servlet-name>
 		<servlet-class>com.dept.controller.DeptServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ddd</display-name>
+		<servlet-name>ddd</servlet-name>
+		<servlet-class>com.emp.controller.ddd</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>DeptServlet</servlet-name>
 		<url-pattern>/dept/dept.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ddd</servlet-name>
+		<url-pattern>/ddd</url-pattern>
 	</servlet-mapping>
 
 </web-app>
