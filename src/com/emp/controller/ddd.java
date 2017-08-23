@@ -12,8 +12,10 @@ public class ddd extends HttpServlet {
        
 
     public ddd() {
-        super();
-        // TODO Auto-generated constructor stub
+ 
+    	super();
+        String h="qweqw";
+        
     }
 
 
@@ -21,6 +23,8 @@ public class ddd extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int oooo=654648;
+
+		int y=123;
 	}
 
 }
