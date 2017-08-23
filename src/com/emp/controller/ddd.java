@@ -12,15 +12,18 @@ public class ddd extends HttpServlet {
        
 
     public ddd() {
-        super();
-        // TODO Auto-generated constructor stub
+ 
+    	super();
+        String h="qweqw";
+        
     }
 
 
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		aa;a;
+		String aaaa="eeeeeeeeeeeeee";
+		int y=123;
 	}
 
 }
