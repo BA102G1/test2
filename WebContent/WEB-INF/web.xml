@@ -41,6 +41,13 @@
 		<servlet-name>ddd</servlet-name>
 		<servlet-class>com.emp.controller.ddd</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>qwer</display-name>
+		<servlet-name>qwer</servlet-name>
+		<servlet-class>com.dept.model.qwer</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>DeptServlet</servlet-name>
 		<url-pattern>/dept/dept.do</url-pattern>
@@ -48,6 +55,10 @@
 	<servlet-mapping>
 		<servlet-name>ddd</servlet-name>
 		<url-pattern>/ddd</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>qwer</servlet-name>
+		<url-pattern>/qwer</url-pattern>
 	</servlet-mapping>
 
 </web-app>
