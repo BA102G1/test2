@@ -48,6 +48,13 @@
 		<servlet-name>qwer</servlet-name>
 		<servlet-class>com.dept.model.qwer</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ggggg</display-name>
+		<servlet-name>ggggg</servlet-name>
+		<servlet-class>com.dept.controller.ggggg</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>DeptServlet</servlet-name>
 		<url-pattern>/dept/dept.do</url-pattern>
@@ -59,6 +66,10 @@
 	<servlet-mapping>
 		<servlet-name>qwer</servlet-name>
 		<url-pattern>/qwer</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ggggg</servlet-name>
+		<url-pattern>/ggggg</url-pattern>
 	</servlet-mapping>
 
 </web-app>
