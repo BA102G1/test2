@@ -19,9 +19,10 @@ public class ddd extends HttpServlet {
 
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String i="ppppppppppppppp";
+		doGet(req, res);
 	}
 
 }
