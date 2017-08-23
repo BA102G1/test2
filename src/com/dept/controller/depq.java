@@ -1,5 +1,7 @@
 package com.dept.controller;
 
-public class depq {
+import java.util.UUID;
 
+public class depq {
+	UUID is=null;
 }
