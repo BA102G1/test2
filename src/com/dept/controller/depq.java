@@ -1,5 +1,9 @@
 package com.dept.controller;
 
-public class depq {
+import java.util.Date;
 
+public class depq {
+	int i=100000000;
+	Date date=null;
+	String hhh="123123123";
 }
