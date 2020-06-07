@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="keywords" content="modal, window, overlay, modern, box, css transition, css animation, effect, 3d, perspective" />
+  <title>True North</title>
+  <!-- <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script> -->
+  <!-- Custom fonts for this template-->
+  <!-- <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+  <link href="../static/css/all.min.css" rel="stylesheet" type="text/css">
+  <!-- <link href="../static/css/solid.min.css" rel="stylesheet" type="text/css"> -->
+  <link href="../static/css/family.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="../static/css/sb-admin-2.min.css" rel="stylesheet" type="text/css">
+  <!-- <link href="../static/css/source/sb-admin-2.css" rel="stylesheet" type="text/css"> -->
+  <link href="../static/css/component.min.css" rel="stylesheet" type="text/css">
+  <link href="../static/css/darktooltip.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+
+
+<!-- <body id="page-top"> -->
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Sidebar - Brand -->
+      <!-- <a class="d-flex justify-content-center" href="index.html"><img class="logo" src="../static/img/logo.png"></a> -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <!-- <div class="sidebar-brand-icon rotate-n-15"> -->
+        <div class="sidebar-brand-icon">
+          <!-- <i class="fas fa-laugh-wink"></i> -->
+          <img class="logo" src="../static/img/logo_wi.png">
+        </div>
+        <div class="sidebar-brand-text mx-3" style="width: auto;white-space: nowrap;">True North<sup>TFB</sup></div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+      <div class="sidebar-heading">
+        搜尋標籤
+      </div>
+        <!-- <a class="nav-link" href="index.html"> -->
+          <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+          <!-- <span>Dashboard</span></a> -->
+          <form class="nav-link d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="search" class="form-control bg-light border-0 small Search-txt" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" value="">
+              <div class="input-group-append">
+                <button class="btn btn-search zoom-in" type="button" id='searchcust'>
+                  <i class="fas fa-search fa-sm zoom-in"></i>
+                </button>
+              </div>
+            </div>
+
+            <div id="all_tags_div" class="" for="Search-txt">
+              {% for tags in tags_list %}
+              	{% if tags["tags_seq_l3_isnnull"] == "Y" %}
+	                <div class="cell tags_search" id="{{tags["tags_seq_l3_en"]}}_search" data-index="{{tags["tags_seq_l3_cn"]}}{{tags["tags_seq_l3_en"]}}">
+	                  {{tags["tags_seq_l3_cn"]}}
+	                  <span class="tags_search_l1 hidden">{{tags["tags_seq_l1_cn"]}}_collapse</span>
+	                  <span class="tags_search_l2 hidden">{{tags["tags_seq_l2_cn"]}}_collapse</span>
+	                  <span class="tags_search_l3_en hidden">{{tags["tags_seq_l3_en"]}}</span>
+	                </div>
+	            {% endif %}
+              {% endfor %}
+            </div>
+          </form>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        標籤類別
+      </div>
+
+      {% for tag_l1 in tags_l1 %}
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse{{tag_l1["tags_seq_l1_cn"]}}" aria-expanded="true" aria-controls="collapse{{tag_l1["tags_seq_l1_cn"]}}" id="{{tag_l1["tags_seq_l1_cn"]}}_collapse">
+          <span class="fs-15">{{tag_l1["tags_seq_l1_cn"]}}</span>
+        </a>
+          <div id="collapse{{tag_l1["tags_seq_l1_cn"]}}" class="bg-blue collapse rounded">
+          {% for tag_l2 in tags_l2 %}
+            {% if tag_l1["tags_seq_l1"] == tag_l2["tags_seq_l1"] %}
+                <a class="nav-link collapsed fs-15" href="#" data-toggle="collapse" data-target="#collapse{{tag_l2["tags_seq_l2_cn"]}}" aria-expanded="true" aria-controls="collapse{{tag_l2["tags_seq_l2_cn"]}}" id="{{tag_l2["tags_seq_l2_cn"]}}_collapse">
+                  {{tag_l2["tags_seq_l2_cn"]}}
+                </a>
+              <!-- </div> -->
+              <div id="collapse{{tag_l2["tags_seq_l2_cn"]}}" class="collapse">
+                <div class="bg-white collapse-inner rounded">
+                  {% for tags in tags_list %}
+                    {% if tag_l1["tags_seq_l1"] == tags["tags_seq_l1"] and tag_l2["tags_seq_l2"] == tags["tags_seq_l2"] %}
+                      <h6 class="collapse-item">
+                        <!-- <div class="custom-control custom-checkbox"> -->
+                          <!-- <input type="checkbox" class="custom-control-input tag_check" id="{{tags["tags_seq_l3_en"]}}"> -->
+                            <!-- <label class="custom-control-label" for="{{tags["tags_seq_l3_en"]}}" id="{{tags["tags_seq_l3_en"]}}_cn">{{tags["tags_seq_l3_cn"]}}</label> -->
+                            <label class="" for="{{tags["tags_seq_l3_en"]}}" id="{{tags["tags_seq_l3_en"]}}_cn">{{tags["tags_seq_l3_cn"]}}</label>
+                            {% if tags["tags_seq_l3_isnnull"] == "Y" %}
+                            	<span class="fas fa-fw fa-pen fa-xs span_pen md-trigger" data-modal="modal-{{tags["tags_seq_l3_en"]}}" id="{{tags["tags_seq_l3_en"]}}_pen"></span>
+                            	<span class="fas fa-fw fa-trash-alt small span_del" id="{{tags["tags_seq_l3_en"]}}_del"></span>
+                            {% endif %}
+                        <!-- </div> -->
+                      </h6>
+                      <div class="md-modal md-modal-15 md-effect-15 ui-widget-content" id="modal-{{tags["tags_seq_l3_en"]}}">
+                        <div class="md-content">
+                          <h3>
+                            {{tags["tags_seq_l3_cn"]}}
+                            {% if tags["tags_seq_l3_type"] == "0.0-1.0" %}
+                            	<span style="font-size: 10px;">(百分比)</span>
+                            {% endif %}
+                            {% if tags["tags_seq_l3_info"] != none %}
+                            	 <span class="fas fa-fw fa-question-circle small que help_c" id="{{tags["tags_seq_l3_en"]}}_que"></span>
+                           	{% endif %}
+                             <span class="fas fa-fw fa-times md-close md-close-{{tags["tags_seq_l3_en"]}} cursor_pointer"></span>
+                            {% if tags["tags_seq_l3_info"] != none %}
+                            	<div class="fi_info {{tags["tags_seq_l3_en"]}}_que">
+									{% for i in range(tags["tags_seq_l3_info"]|length) %}
+                            			{{tags["tags_seq_l3_info"][i]}}
+                            			{% if i != 0 and (i % 40) == 0 %}
+                            				<br>
+                            			{% endif %}
+                            		{% endfor %}
+                            	</div>
+                            {% endif %}
+                          </h3>
+                          <div>
+                            <ul id="{{tags["tags_seq_l3_en"]}}_ul">
+                              <!-- <li><strong>條件一：</strong> "> 10</li> -->
+                            </ul>
+                            <span style="display: none;" id="{{tags["tags_seq_l3_en"]}}_type">{{tags["tags_seq_l3_type"]}}</span>
+                            <select class="select_ao" id="{{tags["tags_seq_l3_en"]}}_s_ao">
+                               <option>And</option>
+                               <option>Or</option>
+                            </select>
+                            {% if tags["tags_seq_l3_type"] == "數值" or tags["tags_seq_l3_type"] == "0.0-1.0" %}
+                              <select class="select_op_int" id="{{tags["tags_seq_l3_en"]}}_s_op">
+                               <option>=</option>
+                               <option>></option>
+                               <option>>=</option>
+                               <option><</option>
+                               <option><=</option>
+                               <option><></option>
+                               <option>Between</option>
+                              </select>
+                              <input type="text" style="width:50px;" class="int_txt int_txt1" id="{{tags["tags_seq_l3_en"]}}_i_t1" {% if tags["tags_seq_l3_type"] == "0.0-1.0" %} placeholder="0.0-1.0" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" {% else %} onkeyup="value=value.replace(/[^\d]/g,'') " {% endif %} >
+                              <span class="int_txt2_a" id="{{tags["tags_seq_l3_en"]}}_i_t2_a">And</span>
+                              <input type="text" style="width:50px;" class="int_txt int_txt2" id="{{tags["tags_seq_l3_en"]}}_i_t2" {% if tags["tags_seq_l3_type"] == "0.0-1.0" %} placeholder="0.0-1.0" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" {% else %} onkeyup="value=value.replace(/[^\d]/g,'') " {% endif %}>
+                            {% else %}
+                              {% if tags["tags_seq_l3_type"] == "Y、N" %}
+                                <span style="margin: 5px;">=</span>
+                              {% endif %}
+                              <select class="select_op_txt" id="{{tags["tags_seq_l3_en"]}}_s_op" {% if tags["tags_seq_l3_type"] == "Y、N" %} hidden {% endif %}>
+                               <option>=</option>
+                               <option><></option>
+                               <option>In</option>
+                               <option>Not In</option>
+                               <!-- <option>Like</option> -->
+                              </select>
+                              
+                              <select class="select_op_val" id="{{tags["tags_seq_l3_en"]}}_s_val">
+                                {% set vallist = tags["tags_seq_l3_type"].split('、') %}
+                                {% for item in vallist %}
+                                  <option>{{ item }}</option>
+                                {% endfor %} 
+                              </select>
+                              <form class="select_in_val" id="{{tags["tags_seq_l3_en"]}}_si_val">
+                                {% for item in vallist %}
+                                  <input type="checkbox" value="{{ item }}" id="{{tags["tags_seq_l3_en"]}}_ck_name" name="{{tags["tags_seq_l3_en"]}}"> {{ item }}
+                                {% endfor %} 
+                              </form>
+                              <input type="text" style="width:130px;" class="txt_txt" placeholder="" id="{{tags["tags_seq_l3_en"]}}_s_t">
+                            {% endif %}
+                            <span class="fas fa-fw fa-plus-circle add_fl cursor_pointer" id="{{tags["tags_seq_l3_en"]}}_fl"></span>
+                            <!-- <button class="add_fl">222</button> -->
+                            <!-- <a href="#" class="fas fa-fw fa-plus-circle add_fl" >121</a> -->
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+          </div>
+      </li>
+      {% endfor %}
+
+      <!-- Divider -->
+      <!-- <hr class="sidebar-divider"> -->
+
+      <!-- Heading -->
+<!--       <div class="sidebar-heading">
+        Addons
+      </div> -->
+
+      <!-- Nav Item - Pages Collapse Menu -->
+<!--       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Pages</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Login Screens:</h6>
+            <a class="collapse-item" href="login.html">Login</a>
+            <a class="collapse-item" href="register.html">Register</a>
+            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Other Pages:</h6>
+            <a class="collapse-item" href="404.html">404 Page</a>
+            <a class="collapse-item" href="blank.html">Blank Page</a>
+          </div>
+        </div>
+      </li> -->
+
+      <!-- Nav Item - Charts -->
+<!--       <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Charts</span></a>
+      </li> -->
+
+      <!-- Nav Item - Tables -->
+<!--       <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Tables</span></a>
+      </li> -->
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="POST" action="/upload" enctype="multipart/form-data" >
+            <div class="input-group" style="width: 250px;">
+              {% if 'file' not in session %}
+                <input id="file" type="file" onchange="upload(this)" name="file" style="display: none" />
+                <input type="text" readonly="readonly" class="rounded form-control bg-light border-0 small upfiv" placeholder="Upload your file...">
+                <div class="input-group-append">
+                  <button class="btn btn-primary bt-up alias sl_file" type="button" onclick="file.click()">
+                    <i class="fas fa-file-upload fa-sm bt-up-icon alias"></i>
+                  </button>
+                  <button class="btn btn-primary bt-up alias up_file" type="submit" >
+                    <i class="fas fa-check fa-sm bt-up-icon alias"></i>
+                  </button>
+                </div>
+                {% else %}
+                  <input type="text" readonly="readonly" class="rounded form-control bg-light border-0 small upfiv" placeholder="上傳檔：{{session['filename']}}">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary bt-up cursor_pointer del_file" type="button" onclick="javascript:location.href='/delfile'">
+                      <i class="fas fa-user-minus fa-sm bt-up-icon cursor_pointer"></i>
+                    </button>
+                  </div>
+                {% endif %}
+              
+            </div>
+          </form>
+          <span class="fas fa-file-export fa-fw export"> Export To File</span>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1 alertsDropdown_li" data-tooltip="通知訊息">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">3+</span>
+              </a>
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">新增標籤通知：<br>《客戶組成》<br>【有效卡】</span>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-link text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    合併標籤通知：<br>《行為DNA》<br>【哈中族】、<br>【哈日族】、<br>【哈歐族】、<br>【哈美族】、<br>【哈韓族】
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    緊急停機通知：<br>【時段】：<br>上午 10 點 至 下午 12 點
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              </div>
+            </li>
+
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1 messagesDropdown_li" data-tooltip="通知我們">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-envelope fa-fw"></i>
+                <!-- Counter - Messages -->
+                <!-- <span class="badge badge-danger badge-counter">7</span> -->
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header">
+                  <!-- Message Center -->
+                  Inform Us
+                </h6>
+                <br>
+                <div>
+                  　主旨：<input type="text" name="">
+                </div>
+                <hr>
+                <div>
+                  <div style="float: left;">　內容：</div>
+                  <div><textarea style="color: gray;" placeholder="請輸入您寶貴的意見"></textarea></div>
+                </div>
+           <!--      <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div class="font-weight-bold">
+                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                  </div>
+                </a> -->
+<!--                 <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
+                    <div class="status-indicator"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
+                    <div class="status-indicator bg-warning"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                  </div>
+                </a> -->
+                <a class="dropdown-item text-center small" href="#" style="background: #4e73df;color: #fff;">Send Mail!</a>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  {% if session['act'] %}
+                    {{name}}
+                  {% else %}
+                    <meta http-equiv="refresh" content="5;url=/login"/>
+                  {% endif %}
+                </span>
+                <img class="img-profile rounded-circle" src="../static/img/{{img}}.png">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+ <!--          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div> -->
+          <!-- Content Row -->
+          資料來源日期：2020/06/05
+          <div class="row">
+			<!-- {{test}} -->
+            <!-- {{session['file']}} -->
+            <!-- <input type="text" value="(AGE_CNT BETWEEN 40 and 50)" class="sql"> -->
+            <!-- Earnings (Monthly) Card Example -->
+<!--             <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4 total_count">
+              <div class="card border-left-TOTAL shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-TOTAL text-uppercase mb-1">TOTAL Customer</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{"{:,.0f}".format(session['total'])}}</div> 
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-users fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4 cust_count">
+              <div class="card border-cust_count shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-cust_count text-uppercase mb-1">Target Customer</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 target_total">
+                              0
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <!-- <div class="progress-bar bg-info percent" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div> -->
+                            <div class="progress-bar bg-cust_count percent" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-street-view fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4 cust_filter">
+              <div class="card border-Filters shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-Filters text-uppercase mb-1">Target Filters</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <div class="md-modal md-modal-18 md-effect-18" id="modal-18">
+                          <div class="md-content">
+                            <h3>目前篩選條件清單</h3>
+                            <div>
+                              <ul id="filter_box">
+                                
+                              </ul>
+                              <!-- <p class="fil_p_sql">SQL</p> -->
+                              <!-- <ul id="fl_now"> -->
+                                <!-- <li><strong>條件１：</strong> > 10 </li> -->
+                              <!-- </ul> -->
+                              <button class="md-close md-18-bt">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="md-trigger md-setperspective md-18-bt" data-modal="modal-18">Tags</button>
+                        <div class="md-overlay"></div>
+                        <div class="md-modal md-modal-18 md-effect-18" id="modal-19">
+                          <div class="md-content">
+                            <h3>SQL查詢清單</h3>
+                            <div>
+                              <span class="final_sql">無</span>
+                              <button class="md-close md-18-bt">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="md-trigger md-setperspective md-18-bt" data-modal="modal-19">SQL</button>
+                        <div class="md-overlay"></div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-filter fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!--             <div class="col-xl-3 col-md-6 mb-4 cust_sql">
+              <div class="card border-SQL shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-SQL text-uppercase mb-1">Target SQL</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-database fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <div id="filter" class="hidden">
+                <!-- <button id="test">test</button> -->
+            </div>
+
+          </div>
+
+          <!-- Content Row -->
+
+          <!-- TOP -->
+          <div class="row">
+
+            <!-- 年齡 -->
+            <div class="col-xl-4">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">年齡分布(%)</h6>
+<!--                   <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="custAge"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- HAMYS -->
+            <div class="col-xl-4">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">HAMYS(%)</h6>
+<!--                   <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="custDistributed"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 客戶組成 -->
+            <div class="col-xl-4">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">客戶組成(%)</h6>
+<!--                   <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="custComponent"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CONT -->
+          <div class="row">
+
+            <!-- 預測行外資產(%) -->
+            <div class="col-xl-4">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary"><span>預測行外資產(%)</span></h6>
+<!--                   <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="custOthBank"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 預測客戶信用行為-貝多芬(%) -->
+            <div class="col-xl-4">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary"><span>預測客戶信用行為-貝多芬(%)</span></h6>
+<!--                   <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="custScore"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- 收益來源 -->
+            <div class="col-xl-4">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">收益來源(%)</h6>
+<!--                   <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="custIncome"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- BOTTOM -->
+          <div class="row">
+
+            <!-- Next Best Offer -->
+            <div class="col-xl-4">
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Next Best Offer(高分群)(%)</h6>
+<!--                   <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="custNextBest"></canvas>
+                  </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- 信用卡消費 -->
+            <div class="col-xl-4">
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary"><span>信用卡消費(%)</span></h6>
+<!--                   <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="card-body">
+                  <div class="chart-area">                  
+                     <canvas id="custCreditCard"></canvas>
+                  </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- DNA -->
+            <div class="col-xl-4">
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">DNA Top 20</h6>
+<!--                   <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="card-body">
+                  <div class="chart-area">      
+                  	<div class="dna_list">
+              			<table border="1" class="dna_table">
+              			<tr>
+              				<td><b>Rank</b></td>
+              				<td><b>DNA</b></td>
+              				<td><b>Count</b></td>
+              			</tr>
+              			{% for i in range(test|length) %}
+							<tr class="dna_tr">
+								<td>{{(i+1)}}</td>
+								<td><span class="{{ test[i][2] }}"></span> {{ test[i][1] }}</td>
+								<td>{{ test[i][3] }}</td>
+							</tr>
+              			{% endfor %}
+              			</table>
+                  	</div>            
+                     <!-- <div id="custCreditCard" style="height: 100%;width:100%;"></div> -->
+                  </div>
+                </div>
+                </div>
+            </div>
+
+
+          </div>
+
+          <!-- Content Row -->
+          <!-- <div class="row"> -->
+
+            <!-- Content Column -->
+            <!-- <div class="col-lg-6 mb-4"> -->
+
+              <!-- Project Card Example -->
+<!--               <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                </div>
+                <div class="card-body">
+                  <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
+                  <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div> -->
+
+              <!-- Color System -->
+<!--               <div class="row">
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-primary text-white shadow">
+                    <div class="card-body">
+                      Primary
+                      <div class="text-white-50 small">#4e73df</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-success text-white shadow">
+                    <div class="card-body">
+                      Success
+                      <div class="text-white-50 small">#1cc88a</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-info text-white shadow">
+                    <div class="card-body">
+                      Info
+                      <div class="text-white-50 small">#36b9cc</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-warning text-white shadow">
+                    <div class="card-body">
+                      Warning
+                      <div class="text-white-50 small">#f6c23e</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-danger text-white shadow">
+                    <div class="card-body">
+                      Danger
+                      <div class="text-white-50 small">#e74a3b</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                  <div class="card bg-secondary text-white shadow">
+                    <div class="card-body">
+                      Secondary
+                      <div class="text-white-50 small">#858796</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+ -->
+            <!-- <div class="col-lg-6 mb-4"> -->
+
+              <!-- Illustrations -->
+<!--               <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="../static/img/undraw_posting_photo.svg" alt="">
+                  </div>
+                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                  <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw &rarr;</a>
+                </div>
+              </div>
+ -->
+              <!-- Approach -->
+<!--               <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                </div>
+                <div class="card-body">
+                  <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
+                  <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
+                </div>
+              </div>
+
+            </div> -->
+
+          <!-- </div> -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>&copy; 台北富邦商業銀行股份有限公司-True North</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!--   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+
+  <!-- Bootstrap core JavaScript-->
+  <!-- <script src="../static/vendor/jquery/jquery.min.js"></script> -->
+  <script src="../static/js/jquery.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" data-auto-replace-svg="nest"></script> -->
+  <!-- <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+  <script src="../static/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../static/js/Chart.min.js"></script>
+  <script src="../static/js/utils.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <!-- <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script> -->
+  <script src="../static/js/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="../static/js/sb-admin-2.min.js"></script>
+  <!-- <script src="../static/js/source/sb-admin-2.js"></script> -->
+
+  <!-- Page level plugins -->
+  <!-- <script src="../static/vendor/chart.js/Chart.min.js"></script> -->
+
+  <!-- Page level custom scripts -->
+  <!-- <script src="../static/js/demo/chart-area-demo.js"></script> -->
+  <!-- <script src="../static/js/demo/chart-pie-demo.js"></script> -->
+
+  <!-- test chart -->
+  <!-- <script src="../static/js/demo/chart-demo.js"></script> -->
+  <!-- <script src="../static/js/demo/chart-2-demo.js"></script> -->
+  <!-- <script src="../static/js/demo/chart-3-demo.js"></script> -->
+
+  <script src="../static/js/classie.min.js"></script>
+  <script src="../static/js/modalEffects.min.js"></script>
+
+  <script src="../static/js/jquery.darktooltip.min.js"></script>
+  <!-- <script src="../static/js/jquery.awesome-cursor.min.js"></script> -->
+
+  <!--DNA資料 -->
+  <script src="../static/js/echarts.min.js"></script>
+  <script src="../static/js/chart/dna.min.js"></script>
+
+
+<script>
+
+
+//total color
+var SteelBlue  = "#4682B4";
+//target color
+var LightSteelBlue = "#B0C4DE";
+
+var CadetBlue  = "#5F9EA0";
+var SteelBlue  = "#4682B4";
+var LightBlue  = "#ADD8E6";
+var PowderBlue  = "#B0E0E6";
+var LightSkyBlue  = "#87CEFA";
+var SkyBlue  = "#87CEEB";
+var CornflowerBlue = "#6495ED";
+var DeepSkyBlue  = "#00BFFF";
+var DodgerBlue  = "#1E90FF";
+var RoyalBlue  = "#4169E1";
+var Blue  = "#0000FF";
+var MediumBlue  = "#0000CD";
+var DarkBlue  = "#00008B";
+var Navy  = "#000080";
+var MidnightBlue  = "#191970";
+
+
+//HAMYS的資料
+var custDistributedData = {
+labels: ['H','A', 'M','Y'],
+datasets: [{
+data: [
+{{session['totalHAMYS'].get('H')}},
+{{session['totalHAMYS'].get('A')}},
+{{session['totalHAMYS'].get('M')}},
+{{session['totalHAMYS'].get('Y')}}
+],
+backgroundColor: [CadetBlue, SteelBlue, SkyBlue,DodgerBlue],
+hoverBackgroundColor: '#f00',
+hoverBorderColor: "rgba(234, 236, 244, 1)"
+}],
+};
+
+
+// var custDistributedData = {
+//   // labels: ['S', 'Y','M', 'A','H'],
+//   labels: ['H','A', 'M','Y'],
+//   datasets: [{
+//     label: '目標',
+//     backgroundColor: SteelBlue,
+//     stack: 'Stack 0',
+//     data: [
+// 0,0,0,0
+//     ]
+//   }, {
+//     label: '全行',
+//     backgroundColor: LightSkyBlue,
+//     stack: 'Stack 0',
+//     data: [
+//       {{session['totalHAMYS'].get('H')}},
+//       {{session['totalHAMYS'].get('A')}},
+//       {{session['totalHAMYS'].get('M')}},
+//       {{session['totalHAMYS'].get('Y')}},
+//       // {{session['totalHAMYS'].get('S')}},
+//     ]
+//   }
+// ]
+// };
+
+
+
+    var custAgeData = {
+      labels: ['<=19', '20~29', '30~39', '40~49', '50~59', '60~69', '70~79' , '>=80'],
+      datasets: [{
+        type: 'line',
+        label: '目標',
+        borderColor: SteelBlue,
+        borderWidth: 2,
+        fill: false,
+        data: [
+0,0,0,0,0,0,0,0
+        ]
+      }, {
+        type: 'bar',
+        label: '全行',
+        backgroundColor: LightSkyBlue,
+        data: [
+          {{session['totalAge'].get('19')}},
+          {{session['totalAge'].get('29')}},
+          {{session['totalAge'].get('39')}},
+          {{session['totalAge'].get('49')}},
+          {{session['totalAge'].get('59')}},
+          {{session['totalAge'].get('69')}},
+          {{session['totalAge'].get('79')}},
+          {{session['totalAge'].get('80')}}
+        ],
+        borderColor: 'white',
+        borderWidth: 2
+      }]
+
+    };
+
+
+
+    var custScoreData = {
+      //labels: ['280差',  '320差', '360差', '400差', '440差', '480差', '520差', '560較差',  '600中等',  '640良好',  '680優良',  '720極好'],
+      labels: ['240~280差',  '280~320差', '320~360差', '360~400差', '400~440差', '440~480差', '480~520差', '520~560較差',  '560~600中等',  '600~640良好',  '640~680優良',  '680~720極好'],
+      datasets: [{
+        type: 'line',
+        label: '目標',
+        borderColor: SteelBlue,
+        borderWidth: 2,
+        fill: false,
+        data: [
+0,0,0,0,0,0,0,0,0,0,0,0
+        ]
+      }, {
+        type: 'bar',
+        label: '全行',
+        backgroundColor: LightSkyBlue,
+        data: [
+                {{session['score'].get('s1')}},
+                {{session['score'].get('s2')}},
+                {{session['score'].get('s3')}},
+                {{session['score'].get('s4')}},
+                {{session['score'].get('s5')}},
+                {{session['score'].get('s6')}},
+                {{session['score'].get('s7')}},
+                {{session['score'].get('s8')}},
+                {{session['score'].get('s9')}},
+                {{session['score'].get('s10')}},
+                {{session['score'].get('s11')}},
+                {{session['score'].get('s12')}},
+
+        ],
+        borderColor: 'white',
+        borderWidth: 2
+      }]
+
+    };
+
+
+//行外預測資產資料
+    var custOthBankData = {
+      labels: ['<1M','1M-3M','3M-15M','15M-30M','>=30M'],
+      datasets: [{
+        label: '目標',
+        backgroundColor: SteelBlue,
+        borderColor: SteelBlue,
+        borderWidth: 1,
+        data: [
+0,0,0,0,0
+        ]
+      }, {
+        label: '全行',
+        backgroundColor: LightSkyBlue,
+        borderColor: LightSkyBlue,
+        borderWidth: 1,
+        data: [
+{{session['othBank'].get('othBank_1')}},
+{{session['othBank'].get('othBank_1_3')}},
+{{session['othBank'].get('othBank_3_15')}},
+{{session['othBank'].get('othBank_15_30')}},
+{{session['othBank'].get('othBank_30')}}
+        ]
+      }]
+
+    };
+
+
+
+//'行外理財戶' => 沒
+//客戶組成component的初始資料
+    var custComponentData = {
+      // labels: ['有效卡', '電金實動戶','理財戶', '臨櫃客戶','薪轉戶','證券戶','現金股利戶' ,'預估行外總資產'],
+      labels: ['薪轉戶','證券戶','數金實動戶','金控員工','line OA 綁定','有效卡'],
+      datasets: [{
+        label: '目標',
+        backgroundColor: SteelBlue,
+        stack: 'Stack 0',
+        data: [
+0,0,0,0,0,0,0,0,0
+        ]
+      }, {
+        label: '全行',
+        backgroundColor: LightSkyBlue,
+        stack: 'Stack 0',
+        data: [
+          {{session['totalCompo'].get('SALARY_FLG')}},
+          {{session['totalCompo'].get('SEC_ACCT_FLG')}},
+          {{session['totalCompo'].get('EB_MB_ACTIVE')}},
+          {{session['totalCompo'].get('EMPLOYEE')}},
+          {{session['totalCompo'].get('lineoa')}},
+          {{session['totalCompo'].get('CC_FLG')}}
+          //{{session['totalCompo'].get('CC_FLG')}},
+          //{{session['totalCompo'].get('OTHBANK_TOP')}}
+          //{{session['totalCompo'].get('OTHBANK_HIGHT')}},
+        ]
+      }
+    ]
+    };
+
+
+//以下這個function取得NextBestOffer 參數t表total的值  d表目標值 label為中文對照  傳入後會自動排序並回傳要得值
+function getOrderData(t,d,label) {
+  var nextBestOfferCLabel = label
+  var nextBestOfferLabel = [];
+  var nextBestOfferData = [];
+  var sortable = [];
+
+  //先塞入陣列 如果為0就不塞入了 不顯示值
+  for (var label in d) {
+      var pct = Math.round((d[label]/t[label])*100);
+      if (pct == 0){
+        continue;
+      };
+      sortable.push([label,pct]);
+  }
+
+  //排序 由小到大
+  sortable.sort(function(a, b) {
+      return b[1]-a[1];
+  });
+
+  sortable.forEach(function(e){
+    nextBestOfferLabel.push(nextBestOfferCLabel[e[0]]);
+    nextBestOfferData.push(e[1]);
+  });
+  return [nextBestOfferLabel,nextBestOfferData];
+};
+
+
+
+//NextBestOffer資料更新
+window.nextBestOfferCLabel = {"INS_INV_RES":"投保", "RSP_FUND_RES":"單筆基金",  "FUND_RES":"RSP基金", "ETF_RES":"ETF",  "INS_RES":"投資型保單",  "AO_RES":"分期繳保險", "LN_RES":"信貸需求"}
+
+var nextBestOfferLabel = [];
+
+var list = {{ session['nextBest']|safe}};
+
+    var custNextBestData = {
+      labels: getOrderData(list,list,nextBestOfferCLabel)[0],
+      datasets: [{
+        label: '客戶Next Best Offer',
+        // backgroundColor:
+        // [
+        //   MidnightBlue ,
+        //   DarkBlue,
+        //   SteelBlue,
+        //   CadetBlue,
+        //   CornflowerBlue,
+        //   SkyBlue,
+        //   LightBlue
+        // ],
+        backgroundColor:
+        [
+          LightSkyBlue ,
+          LightSkyBlue,
+          LightSkyBlue,
+          LightSkyBlue,
+          LightSkyBlue,
+          LightSkyBlue,
+          LightSkyBlue
+        ],
+        borderWidth: 1,
+        data: getOrderData(list,list,nextBestOfferCLabel)[1]
+      }
+    ]
+
+    };
+
+
+
+//信用卡
+
+    var custCreditCardData = {
+      // labels: ['有效卡', '電金實動戶','理財戶', '臨櫃客戶','薪轉戶','證券戶','現金股利戶' ,'預估行外總資產'],
+      labels: ['飯店住宿',  '餐飲', '服飾／精品',  '休閒娛樂／旅遊',  '旅遊', '交通運輸', '3C', '通訊', '家電', '百貨公司', '超市&賣場',  '一般購物', '教育費用', '政治、宗教&慈善團體', '醫療護理／保養美容',  '公共事業費用', '保險', '稅'],
+      datasets: [{
+        label: '目標',
+        backgroundColor: SteelBlue,
+        stack: 'Stack 0',
+        data: [
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0
+        ]
+      }, {
+        label: '全行',
+        backgroundColor: LightSkyBlue,
+        stack: 'Stack 0',
+        data: [
+{{session['creditCard'].get('MCC_A01_FLG')}},
+{{session['creditCard'].get('MCC_A02_FLG')}},
+{{session['creditCard'].get('MCC_B_FLG')}},
+{{session['creditCard'].get('MCC_C_FLG')}},
+{{session['creditCard'].get('MCC_C01_FLG')}},
+{{session['creditCard'].get('MCC_D_FLG')}},
+{{session['creditCard'].get('MCC_E01_FLG')}},
+{{session['creditCard'].get('MCC_E02_FLG')}},
+{{session['creditCard'].get('MCC_E03_FLG')}},
+{{session['creditCard'].get('MCC_F01_FLG')}},
+{{session['creditCard'].get('MCC_F02_FLG')}},
+{{session['creditCard'].get('MCC_F03_FLG')}},
+{{session['creditCard'].get('MCC_H01_FLG')}},
+{{session['creditCard'].get('MCC_H02_FLG')}},
+{{session['creditCard'].get('MCC_I_FLG')}},
+{{session['creditCard'].get('MCC_J_FLG')}},
+{{session['creditCard'].get('MCC_L01_FLG')}},
+{{session['creditCard'].get('MCC_M_FLG')}}
+        ]
+      }
+    ]
+    };
+
+
+
+
+    //收益分布 custIncome的初始資料
+    var rev_sav_p = {{session['incomePeople'].get('REV_SAV')}};
+    var rev_fund_p = {{session['incomePeople'].get('REV_FUND')}};
+    var rev_etf_p = {{session['incomePeople'].get('REV_ETF')}};
+    var rev_bond_p = {{session['incomePeople'].get('REV_BOND')}};
+    var rev_si_sn_p = {{session['incomePeople'].get('REV_SI_SN')}};
+    var rev_oth_inv_p = {{session['incomePeople'].get('REV_OTH_INV')}};
+    var rev_ins_inv_p = {{session['incomePeople'].get('REV_INS_INV')}};
+    var rev_ins_sav_p = {{session['incomePeople'].get('REV_INS_SAV')}};
+    var rev_oth_ins_p = {{session['incomePeople'].get('REV_OTH_INS')}};
+    var rev_mtg_p = {{session['incomePeople'].get('REV_MTG')}};
+    var rev_loan_p = {{session['incomePeople'].get('REV_LOAN')}};
+
+
+    var rev_sav_a = {{session['incomeAmount'].get('REV_SAV')}};
+    var rev_fund_a = {{session['incomeAmount'].get('REV_FUND')}};
+    var rev_etf_a = {{session['incomeAmount'].get('REV_ETF')}};
+    var rev_bond_a = {{session['incomeAmount'].get('REV_BOND')}};
+    var rev_si_sn_a = {{session['incomeAmount'].get('REV_SI_SN')}};
+    var rev_oth_inv_a = {{session['incomeAmount'].get('REV_OTH_INV')}};
+    var rev_ins_inv_a = {{session['incomeAmount'].get('REV_INS_INV')}};
+    var rev_ins_sav_a = {{session['incomeAmount'].get('REV_INS_SAV')}};
+    var rev_oth_ins_a = {{session['incomeAmount'].get('REV_OTH_INS')}};
+    var rev_mtg_a = {{session['incomeAmount'].get('REV_MTG')}};
+    var rev_loan_a = {{session['incomeAmount'].get('REV_LOAN')}};
+
+
+
+
+incomeAmount = {"存匯":rev_sav_a, "基金":rev_fund_a,  "ETF":rev_etf_a,  "海外債":rev_bond_a, "SI_SN":rev_si_sn_a, "其他投資":rev_oth_inv_a, "投資型保險":rev_ins_inv_a,  "儲蓄型保險":rev_ins_sav_a,  "其他保險":rev_oth_ins_a, "房貸":rev_mtg_a, "信貸":rev_loan_a};
+incomePeople = {"存匯":rev_sav_p, "基金":rev_fund_p,  "ETF":rev_etf_p,  "海外債":rev_bond_p, "SI_SN":rev_si_sn_p, "其他投資":rev_oth_inv_p, "投資型保險":rev_ins_inv_p,  "儲蓄型保險":rev_ins_sav_p,"其他保險":rev_oth_ins_p,"房貸":rev_mtg_p,"信貸":rev_loan_p};
+var incomeData ={
+  labels: ["存匯",  "基金",  "ETF",  "海外債",  "SI_SN", "其他投資", "投資型保險", "儲蓄型保險", "其他保險",  "房貸", "信貸"],
+  datasets: [{
+    data: [
+      rev_sav_p,
+      rev_fund_p,
+      rev_etf_p,
+      rev_bond_p,
+      rev_si_sn_p,
+      rev_oth_inv_p,
+      rev_ins_inv_p,
+      rev_ins_sav_p,
+      rev_oth_ins_p,
+      rev_mtg_p,
+      rev_loan_p
+    ],
+    backgroundColor: [CadetBlue, SteelBlue, SkyBlue,DodgerBlue ,PowderBlue,LightSkyBlue,LightSteelBlue,CornflowerBlue,DeepSkyBlue,LightBlue ,RoyalBlue],
+    // hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+    hoverBackgroundColor: '#f00',
+    hoverBorderColor: "rgba(234, 236, 244, 1)",
+  }],
+};
+
+
+//DNA的資料
+var dna = {{ session['dna']|safe }};
+var dnaData = getDnaData(dna);
+
+
+//這是用來取得dna的資料用的 傳入object後 回傳對應資料
+function getDnaData(d) {
+  var lifeHabitSum = d.DIGITAL_FLG+ d.THREEC_FLG+ d.MUSIC_FLG+  d.SHOPPING_FLG+ d.SPORT_FLG+  d.NORTHDRIFT_FLG+ d.NIGHT_FLG;
+  var consumHabitSum = d.TECHNOLOGY_FLG+  d.MOBILEPAY_FLG+  d.APPLE_FLG+  d.LAZY_FLG+ d.OTAKU_FLG+  d.MOVIE_FLG+  d.ONLINESHOPPING_FLG;
+  var dietSum = d.EAT_FLG+  d.COFFEE_FLG;
+  var travelSum = d.TRAVEL_FLG+ d.BACKPACKING_FLG+  d.INCOUNTRYTRAVEL_FLG+  d.CROSSCOUNTRYTRAVEL_FLG+ d.JAPAN_FLG+  d.KOREA_FLG+  d.USA_FLG+  d.CHINA_FLG+  d.EUROPE_FLG;
+  var transSum = d.COMMUTING_FLG+ d.CAROWNER_FLG+ d.HIGHSPEEDRAILWAY_FLG;
+
+  var dnaData = [
+      {"value": [lifeHabitSum],
+          "name": "生活習性",
+          "children": [
+              {"value": [d.DIGITAL_FLG],"name": "數位化族群"},
+              {"value": [d.THREEC_FLG],"name": "3C達人"},
+              {"value": [d.MUSIC_FLG],"name": "音樂族"},
+              {"value": [d.SHOPPING_FLG],"name": "百貨族"},
+              {"value": [d.SPORT_FLG],"name": "運動族"},
+              {"value": [d.NORTHDRIFT_FLG],"name": "北漂青年"},
+              {"value": [d.NIGHT_FLG],"name": "夜貓族"}
+            ],
+      },
+      {"value": [consumHabitSum],
+          "name": "消費習性",
+          "children": [
+            {"value": [d.TECHNOLOGY_FLG],"name": "科技採用者"},
+            {"value": [d.MOBILEPAY_FLG],"name": "行動支付"},
+            {"value": [d.APPLE_FLG],"name": "果粉"},
+            {"value": [d.LAZY_FLG],"name": "懶經濟"},
+            {"value": [d.OTAKU_FLG],"name": "宅宅"},
+            {"value": [d.MOVIE_FLG],"name": "電影族"},
+            {"value": [d.ONLINESHOPPING_FLG],"name": "網購族"}
+            ]
+      },
+      {"value": [dietSum],
+          "name": "飲食",
+          "children": [
+            {"value": [d.EAT_FLG],"name": "美食"},
+            {"value": [d.COFFEE_FLG],"name": "咖啡成癮者"}
+            ]
+      },
+      {"value": [travelSum],
+          "name": "旅遊",
+          "children": [
+            {"value": [d.TRAVEL_FLG],"name": "旅遊族"},
+            {"value": [d.BACKPACKING_FLG],"name": "自助旅遊族"},
+            {"value": [d.INCOUNTRYTRAVEL_FLG],"name": "國內旅遊族"},
+            {"value": [d.CROSSCOUNTRYTRAVEL_FLG],"name": "國外旅遊族"},
+            {"value": [d.JAPAN_FLG],"name": "哈日族"},
+            {"value": [d.KOREA_FLG],"name": "哈韓族"},
+            {"value": [d.USA_FLG],"name": "哈美族"},
+            {"value": [d.CHINA_FLG],"name": "哈中族"},
+            {"value": [d.EUROPE_FLG],"name": "哈歐族"}
+            ]
+      },
+      {"value": [transSum],
+          "name": "交通工具",
+          "children": [
+            {"value": [d.COMMUTING_FLG],"name": "通勤族"},
+            {"value": [d.CAROWNER_FLG],"name": "有車階級"},
+            {"value": [d.HIGHSPEEDRAILWAY_FLG],"name": "高鐵"}
+            ]
+      }
+  ];
+    return dnaData;
+}
+
+//Filter target customer
+    $('#searchcust').click(function(event) {
+            // console.log('targetCust')
+            event.preventDefault();
+
+            var fl_v = new Array();
+            // var sql=$(".sql").val();
+            var sql="";
+            var sql_s="";
+
+            $("#filter ul li").each(function(){//迴圈
+              fl_v=$(this).text().split(";"); 
+              sql = sql + fl_v[3] + " ( " + fl_v[1] + " " + fl_v[4] + " " + fl_v[5] + " ) ";
+              sql_s = sql_s + fl_v[3] + " ( " + fl_v[1] + " " + fl_v[4] + " " + fl_v[5] + " ) " + "<br>" ;
+            });
+
+            // $("#fl_now").empty();
+            // $("#fl_now").append('<li><strong>條件：</strong> ' + sql + ' </li>');
+
+            $(".final_sql").empty();
+
+            file_session = $(".del_file").length;
+
+            if ( file_session > 0 && sql_s != "" ) {
+              sql_s = "來源：上傳的 User 清單加下列篩選條件<br>" + sql_s;
+            } else if ( file_session > 0 && sql_s == "" ) {
+              sql_s = "來源：上傳的 User 清單";
+            } else if (sql_s == "") {
+              sql_s = "來源：全行";
+            } else {
+              sql_s = "來源：全行加下列篩選條件<br>" + sql_s;
+            };
+
+            $(".final_sql").append(sql_s);
+
+            // alert(sql);
+
+            $.ajax({
+                    type: 'POST',
+                    // url: 'http://127.0.0.1:5000/targetCust',
+                    url: '{{url_for('targetCust')}}',
+                    // data: $(this).serialize(),
+                    data: {'data':sql},
+                    dataType: 'json',
+                    success: function (data) {
+
+
+                            //8 chart updates
+                            custDistributedData['datasets'][0]['data'] = [data.HAMYS.H,data.HAMYS.A,data.HAMYS.M,data.HAMYS.Y]
+                            window.custHamys.update();
+
+                            // 
+                            custAgeData['datasets'][0]['data'] = [data.age['19'],data.age['29'],data.age['39'],data.age['49'],data.age['59'],data.age['69'],data.age['79'],data.age['80']]
+                            window.custAge.update();
+
+                            /*
+                            custOthBankData['datasets'][0]['data'][1] = data.aum['AUM_PO_AMT']
+                            custOthBankData['datasets'][1]['data'][1] = data.aum['AUM_SAVE_AMT']
+                            custOthBankData['datasets'][2]['data'][1] = data.aum['AUM_INVEST_AMT']
+                            */
+                            // custOthBankData['datasets'][3]['data'][0] = data.aum['insure']
+                            window.custOthBank.update();
+
+                            // custScoreData['datasets'][0]['data'][0] = data.lum['credit']
+                            // custScoreData['datasets'][1]['data'][0] = data.lum['mortgage']
+                            // custScoreData['datasets'][0]['data'][0] = data.lum['LN01_M0_AMT']
+                            // custScoreData['datasets'][1]['data'][0] = data.lum['LN02_M0_AMT']
+                            custScoreData['datasets'][0]['data'] = [data.score['s1'],  data.score['s2'], data.score['s3'], data.score['s4'], data.score['s5'], data.score['s6'], data.score['s7'], data.score['s8'], data.score['s9'], data.score['s10'],  data.score['s11'],  data.score['s12']]
+                            window.custScore.update();
+
+                            custCreditCardData['datasets'][0]['data'] = [data.creditCard['MCC_A01_FLG'],  data.creditCard['MCC_A02_FLG'], data.creditCard['MCC_B_FLG'], data.creditCard['MCC_C_FLG'], data.creditCard['MCC_C01_FLG'], data.creditCard['MCC_D_FLG'], data.creditCard['MCC_E01_FLG'], data.creditCard['MCC_E02_FLG'], data.creditCard['MCC_E03_FLG'], data.creditCard['MCC_F01_FLG'], data.creditCard['MCC_F02_FLG'], data.creditCard['MCC_F03_FLG'], data.creditCard['MCC_H01_FLG'], data.creditCard['MCC_H02_FLG'], data.creditCard['MCC_I_FLG'], data.creditCard['MCC_J_FLG'], data.creditCard['MCC_L01_FLG'], data.creditCard['MCC_M_FLG']]
+                            window.custCreditCard.update();
+
+                            custOthBankData['datasets'][0]['data'] = [data.othBank['othBank_1'],  data.othBank['othBank_1_3'],  data.othBank['othBank_3_15'], data.othBank['othBank_15_30'],  data.othBank['othBank_30']]
+                            window.custOthBank.update();
+
+                            // custComponentData['datasets'][0]['data'] = [data.compo.CC_FLG,data.compo.EB_MB_ACTIVE,data.compo.HA,data.compo.BRANCH,data.compo.SALARY_FLG,
+                            // data.compo.SEC_ACCT_FLG,data.compo.STOCK_INT_2Y_FLG,data.compo.OTHBANK_HIGHT,data.compo.OTHBANK_TOP]
+                            // custComponentData['datasets'][0]['data'] = [data.compo.CC_FLG,data.compo.EB_MB_ACTIVE,data.compo.HA,data.compo.BRANCH,data.compo.SALARY_FLG,data.compo.SEC_ACCT_FLG,data.compo.STOCK_INT_2Y_FLG,data.compo.OTHBANK_TOP]
+
+                            custComponentData['datasets'][0]['data'] = [data.compo.HA,data.compo.SALARY_FLG,data.compo.SEC_ACCT_FLG,data.compo.STOCK_INT_2Y_FLG,data.compo.EB_MB_ACTIVE,data.compo.BRANCH,data.compo.CC_FLG,data.compo.OTHBANK_TOP]
+
+                            window.custCompo.update();
+
+
+                            //收益分布
+                            incomeData['datasets'][0]['data'] = [data.incomePeople.REV_SAV, data.incomePeople.REV_FUND, data.incomePeople.REV_ETF,  data.incomePeople.REV_BOND, data.incomePeople.REV_SI_SN, data.incomePeople.REV_OTH_INV,data.incomePeople.REV_INS_INV,data.incomePeople.REV_INS_SAV,data.incomePeople.REV_OTH_INS,data.incomePeople.REV_MTG,data.incomePeople.REV_LOAN]
+                            incomeAmount = {"存匯":data.incomeAmount.REV_SAV, "基金":data.incomeAmount.REV_FUND,  "ETF":data.incomeAmount.REV_ETF,  "海外債":data.incomeAmount.REV_BOND, "SI_SN":data.incomeAmount.REV_SI_SN, "其他投資":data.incomeAmount.REV_OTH_INV, "投資型保險":data.incomeAmount.REV_INS_INV,  "儲蓄型保險":data.incomeAmount.REV_INS_SAV,  "其他保險":data.incomeAmount.REV_OTH_INS,
+                            "房貸":data.incomeAmount.REV_MTG, "信貸":data.incomeAmount.REV_LOAN,}
+                            incomePeople = {"存匯":data.incomePeople.REV_SAV, "基金":data.incomePeople.REV_FUND,  "ETF":data.incomePeople.REV_ETF,  "海外債":data.incomePeople.REV_BOND, "SI_SN":data.incomePeople.REV_SI_SN, "其他投資":data.incomePeople.REV_OTH_INV, "投資型保險":data.incomePeople.REV_INS_INV,  "儲蓄型保險":data.incomePeople.REV_INS_SAV,  "其他保險":data.incomePeople.REV_OTH_INS,
+                            "房貸":data.incomePeople.REV_MTG, "信貸":data.incomePeople.REV_LOAN,}
+                            window.custIncome.update();
+
+                            //NextBestOffer更新
+                            custNextBestData['labels'] = getOrderData(list,data.nextBest,nextBestOfferCLabel)[0];
+                            custNextBestData['datasets'][0]['data'] = getOrderData(list,data.nextBest,nextBestOfferCLabel)[1];
+                            window.custNextBest.update();
+
+                            //DNA更新
+                            /*
+                            chart.setOption({
+                                tooltip: {
+                                    formatter: getTooltipFormatter(0)
+                                },
+                                series: [
+                                    {
+                                        color: 'blue',
+                                        name: SERIES_NAME,
+                                        type: 'treemap',
+                                        label: {
+                                            show: true,
+                                            formatter: "{b}",
+                                            ellipsis: true
+                                        },
+                                        itemStyle: {
+                                          color: 'blue',
+                                        },
+                                        levels: getLevelOption(0),
+                                        data: buildData('2012 Amount', getDnaData(data.dna))
+                                    }
+                                ]
+                            });
+                            */
+                            // console.log(data.test);
+                            $('.target_total').text(data.target_total['number']);
+                            $('.percent').width(data.target_total['percent'] + '%');
+                            $( ".cust_count" ).fadeIn();
+                            $( ".cust_filter" ).fadeIn();
+                            $( ".cust_sql" ).fadeIn();
+
+                            // for (var i = Things.length - 1; i <= data.test.length; i--) {
+                            // 	Things[i]
+                            // }
+                            $( ".dna_tr" ).remove();
+                            var dna_list = data.test.split(";");
+                            for (var i = 0; i < dna_list.length - 1; i++) {
+                            	var dna = dna_list[i].split(",");
+                            	$( ".dna_table" ).append("<tr class='dna_tr'><td>" + (i + 1) + "</td><td><span class='" + dna[2] + "'></span> " + dna[1] + "</td><td>" + dna[3] + "</td></tr>");
+                            }
+
+                    }
+            });
+    });
+
+
+
+
+   window.onload = function() {
+      var hamys = document.getElementById('custDistributed');
+      window.custHamys = new Chart(hamys, {
+        type: 'doughnut',
+        data: custDistributedData,
+        options: {
+          maintainAspectRatio: false,
+          tooltips: {
+            responsive: true,
+            backgroundColor: "rgb(0,0,0)",
+            bodyFontColor: "#fff",
+            borderColor: '#dddfeb',
+            displayColors: false,
+            callbacks: {
+              title: function(tooltipItem,data ) {
+                        return(data.labels[tooltipItem[0].index]);
+                      },
+              label: function(tooltipItem,data ) {
+                return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
+              }
+            }
+          },
+          legend: {
+            display: true,
+          },
+          cutoutPercentage: 80
+        }
+      });
+      // window.custHamys = new Chart(hamys, {
+      //   type: 'bar',
+      //   data: custDistributedData,
+      //   options: {
+      //     maintainAspectRatio: false,
+      //     tooltips: {
+      //       mode: 'index',
+      //       intersect: false,
+      //       callbacks: {
+      //         label: function(tooltipItem,data ) {
+      //           return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
+      //         }
+      //       }
+      //     },
+      //     responsive: true,
+      //     scales: {
+      //       xAxes: [{
+      //         stacked: true,
+      //       }],
+      //       yAxes: [{
+      //         stacked: false,
+      //         ticks: {
+      //           suggestedMin: 0,
+      //           suggestedMax: 100,
+      //           stepSize: 25
+      //         }
+      //       }]
+      //     }
+      //   }
+      // });
+
+      var age = document.getElementById('custAge').getContext('2d');
+          window.custAge = new Chart(age, {
+            type: 'bar',
+            data: custAgeData,
+            options: {
+              maintainAspectRatio: false,
+              responsive: true,
+              tooltips: {
+                mode: 'index',
+                intersect: true,
+                callbacks: {
+                  label: function(tooltipItem,data ) {
+                    return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
+                  }
+                }
+              },
+              scales: {
+                xAxes: [{
+                  gridLines: {
+                    display: false,
+                  },
+                  ticks: {
+                    suggestedMin: 0
+                  }
+                }]
+              },
+              // ,
+              // scales: {
+              //   yAxes: [{
+              //     ticks: {
+              //       suggestedMin: 0,
+              //       suggestedMax: 100,
+              //       stepSize: 25
+              //     }
+              //   }]
+              // }
+            }
+          });
+
+        var aum = document.getElementById('custOthBank').getContext('2d');
+              window.custOthBank = new Chart(aum, {
+                type: 'bar',
+                data: custOthBankData,
+                options: {
+                  maintainAspectRatio: false,
+                  responsive: true,
+                  tooltips: {
+                    mode: 'index',
+                    intersect: true,
+                    callbacks: {
+                      label: function(tooltipItem,data ) {
+                        return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
+                      }
+                    }
+                  },
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                      suggestedMin: 0,
+                      stepSize: 25
+                      }
+                    }]
+                  }
+                }
+              });
+
+          var lum = document.getElementById('custScore').getContext('2d');
+                    window.custScore = new Chart(lum, {
+                      type: 'bar',
+                      data: custScoreData,
+                      options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        tooltips: {
+                          mode: 'index',
+                          intersect: true,
+                          callbacks: {
+                            label: function(tooltipItem,data ) {
+                              return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
+                            }
+                          }
+                        }
+                      }
+                    });
+
+          var custCompo= document.getElementById('custComponent').getContext('2d');
+                              window.custCompo = new Chart(custCompo, {
+                                type: 'bar',
+                                data: custComponentData,
+                                options: {
+                                  maintainAspectRatio: false,
+                                  responsive: true,
+                                  tooltips: {
+                                    mode: 'index',
+                                    intersect: true,
+                                    callbacks: {
+                                      label: function(tooltipItem,data ) {
+                                        return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
+                                      }
+                                    }
+                                  },
+                                  scales: {
+                                    xAxes: [{
+                                      gridLines: {
+                                        display: false,
+                                      },
+                                      stacked: true,
+                                    }],
+                                  }
+                                }
+                              });
+
+
+
+
+            var custNextBest = document.getElementById('custNextBest').getContext('2d');
+                              window.custNextBest = new Chart(custNextBest, {
+                                type: 'horizontalBar',
+                                data: custNextBestData,
+                                options: {
+                                  maintainAspectRatio: false,
+                                  // Elements options apply to all of the options unless overridden in a dataset
+                                  // In this case, we are setting the border of each horizontal bar to be 2px wide
+                                  elements: {
+                                    rectangle: {
+                                      borderWidth: 2,
+                                    }
+                                  },
+                                  responsive: true,
+                                  legend: {
+                                    display: false,
+                                  },
+                                  scales: {
+                                    xAxes: [{
+                                      gridLines: {
+                                        display: false,
+                                      },
+                                      ticks: {
+                                        suggestedMin: 0,
+                                        suggestedMax: 100
+                                      }
+                                    }],
+                                    yAxes: [{
+                                      gridLines: {
+                                        display: false,
+                                      }
+                                    }]
+                                  },
+                                  tooltips: {
+                                    callbacks: {
+                                      label: function(tooltipItem,data ) {
+                                        return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
+                                      }
+                                    }
+                                  }
+                                }
+                              });
+
+
+
+
+
+
+
+                              //客戶收益 資料初始
+                              var income = document.getElementById("custIncome");
+                              window.custIncome = new Chart(income, {
+                                // type: 'polarArea',
+                                // type: 'doughnut',
+                                type: 'pie',
+                                data: incomeData,
+                                options: {
+                                  maintainAspectRatio: false,
+                                  tooltips: {
+                                    responsive: true,
+                                    backgroundColor: "rgb(255,255,255)",
+                                    bodyFontColor: "#858796",
+                                    borderColor: '#dddfeb',
+                                    //borderWidth: 1,
+                                    //xPadding: 15,
+                                    //yPadding: 15,
+                                    displayColors: false,
+                                    //caretPadding: 10,
+                                  },
+                                  legend: {
+                                    display: true,
+                                  },
+                                  // cutoutPercentage: 80,
+                                  tooltips: {
+                                  callbacks: {
+                                    title: function(tooltipItem,data ) {
+                                      var label = data.labels[tooltipItem[0].index];
+                                      console.log(label);
+                                      return(label);
+                                    },
+                                    label: function(tooltipItem,data ) {
+                                      console.log(data.labels[tooltipItem.index]);
+                                      var index = data.labels[tooltipItem.index];
+                                      var amount = (incomeAmount[index]/1000).toFixed(2);
+                                      var people = incomePeople[index];
+                                      console.log(amount);
+                                      console.log(people);
+                                      var rt = '人數: '+people+'% ; '+'總金額: '+amount+ '百萬';
+                                      return(rt);
+                                    }
+                                  }
+                                }
+                                }
+                              });
+
+          var custCreditCard= document.getElementById('custCreditCard').getContext('2d');
+                              window.custCreditCard = new Chart(custCreditCard, {
+                                type: 'horizontalBar',
+                                data: custCreditCardData,
+                                options: {
+                                  maintainAspectRatio: false,
+                                  responsive: true,
+                                  tooltips: {
+                                    mode: 'index',
+                                    intersect: true,
+                                    callbacks: {
+                                      label: function(tooltipItem,data ) {
+                                        return data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + '%';
+                                      }
+                                    }
+                                  },
+                                  scales: {
+                                    xAxes: [{
+                                      stacked: true,
+                                    }]
+                                    // ,
+                                    // yAxes: [{
+                                    //   stacked: false,
+                                    //   ticks: {
+                                    //     suggestedMin: 0,
+                                    //     suggestedMax: 100
+                                    //   }
+                                    // }]
+                                  }
+                                }
+                              });
+
+
+
+
+            //DNA資料初始
+            //var chartDNA = init(echarts);
+
+
+    };
+
+
+
+  </script>
+
+
+
+<!-- <script src="../static/js/test.js"></script> -->
+
+<!-- <script>
+
+  var chart;
+  var formatUtil;
+
+  var SERIES_NAME = '客戶DNA';
+
+  //這要確認一下  用於改變狀態
+  function areaMeasureChange(mode) {
+    chart.setOption({
+      tooltip: {
+        formatter: getTooltipFormatter(mode)
+      },
+      series: [{
+        visualDimension: mode === 2 ? 2 : null,
+        data: buildData(mode, window.dnaData),
+        levels: getLevelOption(mode)
+      }]
+    });
+  }
+
+  function buildData(mode, originList) {
+    var out = [];
+
+    for (var i = 0; i < originList.length; i++) {
+      var node = originList[i];
+      var newNode = out[i] = cloneNodeInfo(node);
+      var value = newNode.value;
+
+      if (!newNode) {
+        continue;
+      }
+
+      // Calculate amount per household.
+      value[3] = value[0] / window.household_america_2012;
+
+      // if mode === 0 and mode === 2 do nothing
+      if (mode === 1) {
+        // Set 'Change from 2010' to value[0].
+        var tmp = value[1];
+        value[1] = value[0];
+        value[0] = tmp;
+      }
+
+      if (node.children) {
+        newNode.children = buildData(mode, node.children);
+      }
+    }
+
+    return out;
+  }
+
+  function cloneNodeInfo(node) {
+    if (!node) {
+      return;
+    }
+
+    var newNode = {};
+    newNode.name = node.name;
+    newNode.value = (node.value || []).slice();
+    return newNode;
+  }
+
+  function getLevelOption(mode) {
+    return [{
+      color: mode === 0 ? ["#5F9EA0", "#4682B4", "#B0C4DE", "#ADD8E6", "#B0E0E6", "#87CEFA", "#87CEEB", "#6495ED", "#00BFFF", "#1E90FF", "#4169E1", "#0000FF", "#0000CD", "#00008B", "#000080", "#191970"] : null,
+      colorMappingBy: 'id',
+      itemStyle: {
+        borderWidth: 3,
+        gapWidth: 3
+      }
+    },
+    {
+      colorAlpha: mode === 2 ? [0.5, 1] : null,
+      itemStyle: {
+        gapWidth: 1
+      }
+    }];
+  }
+
+  function isValidNumber(num) {
+    return num != null && isFinite(num);
+  }
+
+  function getTooltipFormatter(mode) {
+    var amountIndex = mode === 1 ? 1 : 0;
+    var amountIndex2011 = mode === 1 ? 0 : 1;
+
+    return function(info) {
+      var value = info.value;
+
+      var amount = value[amountIndex];
+      amount = isValidNumber(amount) ? formatUtil.addCommas(amount) : '-';
+
+      var amount2011 = value[amountIndex2011];
+      amount2011 = isValidNumber(amount2011) ? formatUtil.addCommas(amount2011) + '$': '-';
+
+      var perHousehold = value[3];
+      perHousehold = isValidNumber(perHousehold) ? formatUtil.addCommas(( + perHousehold.toFixed(4))) + '$': '-';
+
+      var change = value[2];
+      change = isValidNumber(change) ? change.toFixed(2) + '%': '-';
+
+      return ['<div class="tooltip-title">' + formatUtil.encodeHTML(info.name) + '</div>', '分布: &nbsp;&nbsp;' + amount + '%<br>'].join('');
+    }
+  }
+
+  function init(echarts) {
+
+    formatUtil = echarts.format;
+
+    chart = echarts.init(document.getElementById('custCreditCard'), null, opts = {
+      width: 'auto',
+      height: 'auto'
+    });
+
+    chart.setOption({
+
+      tooltip: {
+        formatter: getTooltipFormatter(0)
+      },
+
+      series: [{
+        color: 'blue',
+        name: SERIES_NAME,
+        type: 'treemap',
+        label: {
+          show: true,
+          formatter: "{b}",
+          ellipsis: true
+        },
+        itemStyle: {
+          color: 'blue',
+        },
+        levels: getLevelOption(0),
+        data: buildData('2012 Amount', window.dnaData)
+      }]
+    });
+  }
+
+
+</script> -->
+
+
+</body>
+
+</html>
